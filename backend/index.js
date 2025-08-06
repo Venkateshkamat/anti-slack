@@ -19,12 +19,6 @@ if (!mongoUri) {
 }
 
 
-const __dirname = path.resolve()
-
-
-
-
-
 // Connect to MongoDB
 mongoose.connect(mongoUri);
 
