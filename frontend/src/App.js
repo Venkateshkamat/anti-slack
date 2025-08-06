@@ -12,28 +12,33 @@ const users = ['Venkatesh', 'Ninad', 'Prajwal', 'Aditya'];
 const tasks = ['Bathroom Cleaning', 'Bathtub Cleaning', 'Trash take out', 'Sweeping', 'Moping'];
 
 function App() {
-  // Form state
   const [formUser, setFormUser] = useState(users[0]);
   const [formTask, setFormTask] = useState(tasks[0]);
-  const [formTimestamp, setFormTimestamp] = useState(() => new Date().toISOString().slice(0, 16)); // "yyyy-MM-ddTHH:mm"
+  const [formTimestamp, setFormTimestamp] = useState(() => new Date().toISOString().slice(0, 16));
 
-  // Data state
   const [totalTasksPerUser, setTotalTasksPerUser] = useState([]);
   const [perUserPerDate, setPerUserPerDate] = useState([]);
 
-  // Date range state for line chart
-  const [dateRangeStart, setDateRangeStart] = useState(() => new Date(new Date().setDate(new Date().getDate() - 7)).toISOString().slice(0, 10));
-  const [dateRangeEnd, setDateRangeEnd] = useState(() => new Date().toISOString().slice(0, 10));
+  const [dateRangeStart, setDateRangeStart] = useState(() =>
+    new Date(new Date().setDate(new Date().getDate() - 7)).toISOString().slice(0, 10)
+  );
+  const [dateRangeEnd, setDateRangeEnd] = useState(() =>
+    new Date().toISOString().slice(0, 10)
+  );
 
-  // Load stats on mount and after new duty submission
   const fetchStats = async () => {
     try {
       const [totalRes, perDateRes] = await Promise.all([
         axios.get(`${API_BASE}/stats/total-per-user`),
         axios.get(`${API_BASE}/stats/per-user-per-date`),
       ]);
-      setTotalTasksPerUser(totalRes.data);
-      setPerUserPerDate(perDateRes.data);
+
+      // Check and log data structure
+      console.log('Total Tasks:', totalRes.data);
+      console.log('Per User Per Date:', perDateRes.data);
+
+      setTotalTasksPerUser(Array.isArray(totalRes.data) ? totalRes.data : []);
+      setPerUserPerDate(Array.isArray(perDateRes.data) ? perDateRes.data : []);
     } catch (e) {
       alert('Failed to fetch stats');
       console.error(e);
@@ -44,7 +49,6 @@ function App() {
     fetchStats();
   }, []);
 
-  // Submit new duty
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -61,16 +65,16 @@ function App() {
     }
   };
 
-  // Filter perUserPerDate by selected date range
-  const filteredLineData = perUserPerDate.filter((entry) => {
-    const entryDate = parseISO(entry.date);
-    return isWithinInterval(entryDate, {
-      start: parseISO(dateRangeStart),
-      end: parseISO(dateRangeEnd),
-    });
-  });
+  const filteredLineData = Array.isArray(perUserPerDate)
+    ? perUserPerDate.filter((entry) => {
+        const entryDate = parseISO(entry.date);
+        return isWithinInterval(entryDate, {
+          start: parseISO(dateRangeStart),
+          end: parseISO(dateRangeEnd),
+        });
+      })
+    : [];
 
-  // Prepare data for line chart: group by date with keys for each user
   const datesSet = new Set(filteredLineData.map(d => d.date));
   const datesSorted = Array.from(datesSet).sort();
 
@@ -160,9 +164,9 @@ function App() {
               dataKey={user}
               stroke={
                 user === 'Venkatesh' ? '#8884d8' :
-                  user === 'Ninad' ? '#82ca9d' :
-                    user === 'Prajwal' ? '#ffc658' :
-                      '#ff7300'
+                user === 'Ninad' ? '#82ca9d' :
+                user === 'Prajwal' ? '#ffc658' :
+                '#ff7300'
               }
               strokeWidth={2}
               dot={{ r: 3 }}
