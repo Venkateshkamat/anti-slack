@@ -17,6 +17,21 @@ if (!mongoUri) {
     process.exit(1);
 }
 
+
+const path = require('path');
+
+// Serve React frontend build in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  // For any unknown routes, serve index.html (React SPA)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
+
+
+
 // Connect to MongoDB
 mongoose.connect(mongoUri);
 
