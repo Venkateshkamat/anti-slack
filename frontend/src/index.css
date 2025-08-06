@@ -5,9 +5,170 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9fa;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Global focus styles */
+*:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better text rendering */
+* {
+  text-rendering: optimizeLegibility;
+}
+
+/* Remove default button styles */
+button {
+  font-family: inherit;
+}
+
+/* Better form element styling */
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Remove default list styles */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Better link styling */
+a {
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #5a6fd8;
+}
+
+/* Better table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+}
+
+/* Better image handling */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better code block styling */
+pre, code {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Better blockquote styling */
+blockquote {
+  border-left: 4px solid #667eea;
+  margin: 0;
+  padding-left: 1rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Better horizontal rule styling */
+hr {
+  border: none;
+  border-top: 1px solid #e9ecef;
+  margin: 2rem 0;
+}
+
+/* Better fieldset styling */
+fieldset {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+/* Better disabled state styling */
+*:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Better selection styling */
+::selection {
+  background-color: #667eea;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #667eea;
+  color: white;
+}
+
+/* Better placeholder styling */
+::placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+::-webkit-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+::-moz-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+/* Better autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #495057 !important;
 }
