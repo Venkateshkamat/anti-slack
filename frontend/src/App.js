@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import { format, parseISO, isWithinInterval } from 'date-fns';
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = '/api';
 
 const users = ['Venkatesh', 'Ninad', 'Prajwal', 'Aditya'];
 const tasks = ['Bathroom Cleaning', 'Bathtub Cleaning', 'Trash take out', 'Sweeping', 'Moping'];
