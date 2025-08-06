@@ -72,7 +72,7 @@ body {
 }
 
 .tab-button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #667eea;
   color: white;
   border-color: #667eea;
   box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
@@ -133,7 +133,7 @@ body {
 .form-control:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
 }
 
 .form-select {
@@ -150,7 +150,7 @@ body {
 .form-select:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
 }
 
 /* Buttons */
@@ -179,35 +179,35 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #667eea;
   color: white;
   border-color: #667eea;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  background-color: #5a6fd8;
   border-color: #5a6fd8;
 }
 
 .btn-success {
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  background-color: #28a745;
   color: white;
   border-color: #28a745;
 }
 
 .btn-success:hover {
-  background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+  background-color: #218838;
   border-color: #218838;
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+  background-color: #dc3545;
   color: white;
   border-color: #dc3545;
 }
 
 .btn-danger:hover {
-  background: linear-gradient(135deg, #c82333 0%, #e55a00 100%);
+  background-color: #c82333;
   border-color: #c82333;
 }
 
