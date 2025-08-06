@@ -3,9 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 app.use(cors());
 app.use(express.json());
@@ -18,17 +19,9 @@ if (!mongoUri) {
 }
 
 
-const path = require('path');
+const __dirname = path.resolve()
 
-// Serve React frontend build in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-  // For any unknown routes, serve index.html (React SPA)
-  app.get('/*wildcard', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-  });
-}
 
 
 
@@ -136,6 +129,16 @@ app.get('/api/stats/per-user-per-date', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+// Serve React frontend build in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  // For any unknown routes, serve index.html (React SPA)
+  app.get('/*wildcard', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
